@@ -1,0 +1,157 @@
+.stage {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 9vh 28px;
+  scroll-margin-top: 80px;
+}
+
+.stage-head {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.stage-num {
+  font-size: 14px;
+  color: var(--violet);
+  padding-top: 6px;
+  white-space: nowrap;
+}
+.stage-num span {
+  color: var(--text-faint);
+}
+
+.stage-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.stage-intuition {
+  font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+  color: var(--text-dim);
+  max-width: 640px;
+}
+
+.fidelity {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.fidelity-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.fidelity--real {
+  color: var(--green);
+  background: rgba(52, 229, 176, 0.1);
+}
+.fidelity--real .fidelity-dot {
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+.fidelity--sim {
+  color: var(--amber);
+  background: rgba(245, 177, 76, 0.1);
+}
+.fidelity--sim .fidelity-dot {
+  background: var(--amber);
+  box-shadow: 0 0 8px var(--amber);
+}
+
+.stage-viz {
+  padding: 22px clamp(16px, 3vw, 30px) 26px;
+  position: relative;
+}
+.stage-viz-tag {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 18px;
+}
+
+.stage-explain {
+  margin-top: 22px;
+  max-width: 760px;
+}
+.stage-explain p {
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+.stage-explain p strong,
+.stage-explain .term {
+  color: var(--text);
+  font-weight: 500;
+}
+.stage-explain code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 5px;
+  color: var(--cyan);
+}
+
+/* expandable rigorous block */
+.expandable {
+  border-top: 1px solid var(--border);
+  margin-top: 6px;
+  padding-top: 14px;
+}
+.expandable-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--cyan);
+  padding: 0;
+}
+.expandable-chevron {
+  font-size: 11px;
+}
+.expandable-body {
+  margin-top: 14px;
+  padding-left: 4px;
+  border-left: 2px solid var(--border);
+  padding-left: 16px;
+}
+.expandable-body p:last-child {
+  margin-bottom: 0;
+}
+
+.math-block {
+  display: block;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+
+.note {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-faint);
+  border-left: 2px solid var(--amber);
+  padding-left: 12px;
+  margin: 14px 0;
+}
+
+@media (max-width: 600px) {
+  .stage-head { flex-direction: column; gap: 8px; }
+  .stage-num { padding-top: 0; }
+}

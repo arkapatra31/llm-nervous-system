@@ -1,0 +1,37 @@
+{
+  "name": "llm-nervous-system",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "homepage": "https://arkapatra31.github.io/llm-nervous-system/",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "framer-motion": "^11.11.1",
+    "gpt-tokenizer": "^2.8.1",
+    "katex": "^0.16.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@types/katex": "^0.16.7",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "eslint": "^9.13.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.13",
+    "gh-pages": "^6.1.1",
+    "globals": "^15.11.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.10.0",
+    "vite": "^5.4.8"
+  }
+}
