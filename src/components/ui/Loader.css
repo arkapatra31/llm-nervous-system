@@ -1,0 +1,38 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader-inner {
+  width: min(420px, 76vw);
+  text-align: center;
+}
+.loader-mark {
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 22px;
+}
+.loader-bar {
+  height: 2px;
+  width: 100%;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loader-fill {
+  height: 100%;
+  width: 0;
+  background: var(--grad);
+}
+.loader-pct {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-faint);
+  letter-spacing: 0.2em;
+}

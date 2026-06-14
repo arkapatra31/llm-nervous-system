@@ -1,4 +1,9 @@
 import { QueryProvider } from './context/QueryContext'
+import { useSmoothScroll } from './lib/smoothScroll'
+import { Scene } from './components/three/Scene'
+import { Loader } from './components/ui/Loader'
+import { Cursor } from './components/ui/Cursor'
+import { ScrollProgress } from './components/ui/ScrollProgress'
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
 import { Footer } from './components/Footer'
@@ -12,11 +17,16 @@ import { Stage7Autoregressive } from './components/stages/Stage7Autoregressive'
 import { Stage8Streaming } from './components/stages/Stage8Streaming'
 
 export default function App() {
+  useSmoothScroll()
+
   return (
     <QueryProvider>
-      <div className="aurora" aria-hidden="true">
-        <div className="aurora-3" />
-      </div>
+      <Loader />
+      <Scene />
+      <div className="vignette" aria-hidden="true" />
+      <div className="grain" aria-hidden="true" />
+      <ScrollProgress />
+      <Cursor />
       <Nav />
       <main>
         <Hero />

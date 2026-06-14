@@ -6,4 +6,15 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command }) => ({
   base: command === 'build' ? '/llm-nervous-system/' : '/',
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          three: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+          tokenizer: ['gpt-tokenizer'],
+          katex: ['katex'],
+        },
+      },
+    },
+  },
 }))

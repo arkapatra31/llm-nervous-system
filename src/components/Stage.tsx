@@ -37,7 +37,7 @@ export function Stage({
       </motion.div>
 
       <motion.div
-        className="stage-viz panel"
+        className="stage-viz card"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}

@@ -1,23 +1,36 @@
 :root {
-  --bg: #07070d;
-  --bg-soft: #0d0d18;
-  --panel: #11111e;
-  --panel-2: #161626;
-  --border: rgba(140, 130, 200, 0.16);
-  --border-strong: rgba(140, 130, 200, 0.34);
-  --text: #ECECF4;
-  --text-dim: #a6a6c0;
-  --text-faint: #6c6c88;
-  --violet: #8b6cff;
-  --cyan: #2dd4e8;
-  --magenta: #f0abfc;
-  --green: #34e5b0;
-  --amber: #f5b14c;
+  /* ---- brand palette ---- */
+  --bg: #08080c;
+  --bg-elev: #0d0d14;
+  --bg-card: rgba(255, 255, 255, 0.022);
+  --bg-card-hover: rgba(255, 255, 255, 0.04);
+  --ink: #f3f2f8;
+  --ink-dim: #a3a2b4;
+  --ink-faint: #6a6979;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+
+  --accent: #7b6cff;
+  --accent-bright: #9a8dff;
+  --cyan: #38d6f0;
+  --magenta: #f08bdc;
+  --green: #4fe6b8;
+  --amber: #f6b65a;
+
+  --grad: linear-gradient(115deg, #9a8dff 0%, #7b6cff 38%, #38d6f0 100%);
+  --grad-soft: linear-gradient(115deg, rgba(154, 141, 255, 0.16), rgba(56, 214, 240, 0.12));
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --maxw: 1080px;
-  --radius: 14px;
-  --radius-sm: 9px;
+
+  --maxw: 1180px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --r-sm: 10px;
+  --r: 16px;
+  --r-lg: 22px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -28,72 +41,48 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 90px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+/* Lenis smooth scroll drives scrolling; disable native smooth when active */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 body {
   background: var(--bg);
-  color: var(--text);
+  color: var(--ink);
   font-family: var(--font-sans);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  line-height: 1.6;
   overflow-x: hidden;
+  cursor: none;
+}
+/* fall back to a normal cursor on touch / coarse pointers */
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
 }
 
-/* Calm aurora — soft, slow-drifting color clouds. No graph, no nodes. */
-.aurora {
+/* film grain + vignette over the whole page for a cinematic, branded finish */
+.grain {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 3;
   pointer-events: none;
-  overflow: hidden;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-.aurora::before,
-.aurora::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.5;
-  will-change: transform;
-}
-.aurora::before {
-  width: 60vw;
-  height: 60vw;
-  left: -10vw;
-  top: -15vw;
-  background: radial-gradient(circle, rgba(139, 108, 255, 0.45), transparent 65%);
-  animation: drift1 26s ease-in-out infinite alternate;
-}
-.aurora::after {
-  width: 55vw;
-  height: 55vw;
-  right: -12vw;
-  top: 10vh;
-  background: radial-gradient(circle, rgba(45, 212, 232, 0.32), transparent 65%);
-  animation: drift2 32s ease-in-out infinite alternate;
-}
-.aurora-3 {
-  position: absolute;
-  width: 45vw;
-  height: 45vw;
-  left: 30vw;
-  bottom: -20vw;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.35;
-  background: radial-gradient(circle, rgba(240, 171, 252, 0.3), transparent 65%);
-  animation: drift3 30s ease-in-out infinite alternate;
-}
-
-@keyframes drift1 {
-  to { transform: translate(12vw, 10vh) scale(1.15); }
-}
-@keyframes drift2 {
-  to { transform: translate(-10vw, 14vh) scale(1.1); }
-}
-@keyframes drift3 {
-  to { transform: translate(-8vw, -12vh) scale(1.2); }
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(130% 100% at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
 }
 
 #root {
@@ -107,60 +96,60 @@ a {
 }
 
 ::selection {
-  background: rgba(139, 108, 255, 0.35);
+  background: rgba(123, 108, 255, 0.4);
   color: #fff;
 }
 
-.mono {
-  font-family: var(--font-mono);
-}
+.mono { font-family: var(--font-mono); }
+.display { font-family: var(--font-display); }
 
 .grad-text {
-  background: linear-gradient(110deg, var(--violet), var(--cyan) 55%, var(--magenta));
+  background: var(--grad);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-h1 {
-  font-size: clamp(2.4rem, 6vw, 4.4rem);
-  line-height: 1.04;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-h2 {
-  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-h3 {
-  font-size: 1.15rem;
+h1, h2, h3 {
+  font-family: var(--font-display);
   font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+h1 { font-size: clamp(2.7rem, 7.5vw, 6rem); letter-spacing: -0.04em; }
+h2 { font-size: clamp(1.9rem, 4.2vw, 3.2rem); }
+h3 { font-size: 1.2rem; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+/* premium card surface */
+.card {
+  background: rgba(12, 12, 18, 0.62);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
 }
 
-/* KaTeX should inherit our light text on the dark theme */
-.katex { color: var(--text); font-size: 1.05em; }
+.katex { color: var(--ink); font-size: 1.04em; }
 
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
 }
+
+::-webkit-scrollbar { width: 0; height: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .aurora::before, .aurora::after, .aurora-3 { animation: none; }
+  .grain { display: none; }
 }

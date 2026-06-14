@@ -1,48 +1,50 @@
 .footer {
-  border-top: 1px solid var(--border);
-  margin-top: 40px;
+  border-top: 1px solid var(--line);
+  margin-top: 60px;
 }
 .footer-inner {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 56px 28px 90px;
+  padding: 64px var(--gutter) 96px;
 }
 .footer-title {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-family: var(--font-display);
   font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 14px;
+  font-size: 17px;
+  margin-bottom: 16px;
 }
 .footer-mark {
-  color: var(--violet);
+  font-family: var(--font-mono);
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .footer-note {
-  color: var(--text-dim);
+  color: var(--ink-dim);
   font-size: 0.95rem;
-  max-width: 720px;
-  margin-bottom: 20px;
+  max-width: 740px;
+  margin-bottom: 22px;
 }
 .footer-note code {
   font-family: var(--font-mono);
-  font-size: 0.85em;
+  font-size: 0.84em;
   color: var(--cyan);
-  background: var(--panel-2);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
   padding: 1px 6px;
-  border-radius: 5px;
+  border-radius: 6px;
 }
-.footer-amber {
-  color: var(--amber);
-}
+.footer-amber { color: var(--amber); }
 .footer-link {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--cyan);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 2px;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
 }
-.footer-link:hover {
-  border-color: var(--cyan);
-}
+.footer-link:hover { color: var(--accent-bright); border-color: var(--accent); }
